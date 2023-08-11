@@ -6,15 +6,17 @@ import AccountProfile from "@/components/forms/AccountProfile";
 
 async function Page() {
   const user = await currentUser();
+  console.log("loading => current user", user);
+
   if (!user) return null; // to avoid typescript warnings
 
   // const userInfo = await fetchUser(user.id);
   const userInfo: any = {};
 
-  if (userInfo?.onboarded) redirect("/");
+  // if (userInfo?.onboarded) redirect("/");
 
   const userData = {
-    id: user.id,
+    id: user?.id,
     objectId: userInfo?._id,
     username: userInfo ? userInfo?.username : user.username,
     name: userInfo ? userInfo?.name : user.firstName ?? "",
